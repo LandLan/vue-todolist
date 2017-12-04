@@ -1,6 +1,6 @@
 <template>
   <div class="todo-input">
-    <input placeholder="Todo" v-on:keyup.enter="handleAddTodo($event)" />
+    <input ref="input" placeholder="Todo" v-on:keyup.enter="handleAddTodo($event.target.value)" />
   </div>
 </template>
 
@@ -11,8 +11,9 @@ export default {
     return {}
   },
   methods: {
-    handleAddTodo: function (event) {
-      let todo = event.target.value
+    handleAddTodo: function (value) {
+      this.$refs.input.value = ''
+      this.$emit('addItem', value)
     }
   }
 }

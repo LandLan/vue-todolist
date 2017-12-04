@@ -1,21 +1,23 @@
 <template>
   <div id="app">
-    <Todo/>
+    <div class="left">
+      <Todo/>
+    </div>
+    <div class="right">
+      <TodoContainer />
+    </div>
   </div>
 </template>
 
 <script>
 import Todo from './components/Todo'
+import TodoContainer from './components/TodoContainer'
 
 export default {
   name: 'app',
   components: {
-    Todo
-  },
-  data () {
-    return {
-      aaa: 'bbb'
-    }
+    Todo,
+    TodoContainer
   }
 }
 </script>
@@ -28,5 +30,10 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+
+.left, .right {
+  width: 50%;
+  float: left;
 }
 </style>

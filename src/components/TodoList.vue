@@ -1,21 +1,32 @@
 <template>
   <ul class="todo-list">
-    <li>{{todoItem}}</li>
+    <li v-for="item in itemData" v-bind:key="item.key">
+      <TodoItem v-bind="item" v-on:deleteItem="handleDeleteItem"/>
+    </li>
   </ul>
 </template>
 
 <script>
+import TodoItem from './TodoItem'
+
 export default {
   name: 'TodoList',
+  components: {
+    TodoItem
+  },
   data () {
-    return {}
+    return {
+      itemData: this.itemlist
+    }
   },
+  props: [ 'itemlist' ],
   methods: {
-  },
-  props: {
-    todoItem: {
-      type: String,
-      default: ''
+    handleDeleteItem: function (num) {
+      this.itemData.forEach((item, index) => {
+        if (item.num === num) {
+          this.itemData.splice(index, 1)
+        }
+      })
     }
   }
 }
